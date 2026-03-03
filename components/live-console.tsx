@@ -124,14 +124,18 @@ export function LiveConsole() {
         {logs.map((entry, i) => (
           <div key={i} className="leading-relaxed">
             <span className="text-neutral-500">[{entry.time}]</span>{" "}
-            <span className="text-neutral-800">{entry.text}</span>
+            <span className="text-neutral-800 dark:text-neutral-300">
+              {entry.text}
+            </span>
             {entry.highlight && (
               <span className={entry.highlight.color}>
                 {entry.highlight.text}
               </span>
             )}
             {entry.rest && (
-              <span className="text-neutral-800">{entry.rest}</span>
+              <span className="text-neutral-800 dark:text-neutral-300">
+                {entry.rest}
+              </span>
             )}
             {entry.highlight2 && (
               <span className={entry.highlight2.color}>
