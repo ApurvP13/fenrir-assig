@@ -4,6 +4,8 @@ A demo B2B security dashboard created as a part of Fenrir's frontend engineering
 
 ## Live Link
 
+[Link](https://fenrir-secrity.vercel.app/scans/1)
+
 
 ## Tech Stack
 - Next.js (App Router)
