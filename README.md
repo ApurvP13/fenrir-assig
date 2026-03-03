@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Assignment for Fenrir Security by Apurv Pandey.
 
-## Getting Started
+A demo B2B security dashboard created as a part of Fenrir's frontend engineering internship. Conists of 3 screens from a real product, in light and dark mode. The pages include a Login Screen, a Scan Dashboard, and an ative scan detail view. The application is responsive and interacive.
 
-First, run the development server:
+## Live Link
+
+
+## Tech Stack
+- Next.js (App Router)
+- React
+- Tailwind CSS v4
+- shadcn/ui
+- TanStack Table v6
+- next-themes
+- Lucide React icons
+
+
+## Screens
+
+### Screen 1 — Login
+Split layout with a full-bleed background image. The left side shows the product headline, feature list, and Trustpilot rating. The right side is a signup card with first/last name, email, password (with show/hide toggle), a terms checkbox, a create account button, and Apple/Google/Meta social login buttons. The Create Account button is disabled until the terms checkbox is ticked. Clicking it navigates to the dashboard — no real auth, intentionally mocked per the spec.
+
+### Screen 2 — Dashboard
+Full app layout with the sidebar and a main content area. The top section is a `StatusBar` showing org metadata and four severity counters (Critical, High, Medium, Low) with percentage change indicators. Below that is the scan table built with TanStack Table — search filters rows by scan name in real time, and clicking any row navigates to the scan detail page.
+
+### Screen 3 — Active Scan Detail
+Same sidebar layout. The top card shows a circular progress indicator, a five-step tracker (Spidering → Mapping → Testing → Validating → Reporting), and a metadata row. Below that, the layout splits into two panels: the left is a live console with Activity Log and Verification Loops tabs showing timestamped terminal output with inline highlights; the right is a finding log with stacked vulnerability cards showing severity, endpoint, and description. Export Report and Stop Scan buttons trigger Sonner toasts.
+
+
+## Mock Data
+
+All data is hardcoded in `lib/mock-data.ts`. No backend, no API calls. The scan table pulls from a `mockScans` array typed against the `Scan` interface. The scan detail page uses hardcoded log entries and findings defined directly in the component files.
+
+---
+
+## Running Locally
 
 ```bash
+git clone <repo-url>
+cd <project-folder>
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) — starts on the login screen.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Known Limitations
 
-## Learn More
+- The Filter and Column buttons in the toolbar are present but not fully wired, search is functional, but advanced filtering by status/type is not implemented
+- All scan detail data is static, navigating to different scan rows loads the same mock detail page
+- No actual authentication,the login form navigates directly to the dashboard on submit
+- Social login buttons (Apple, Google, Meta) are decorative only
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  
