@@ -50,12 +50,12 @@ const severities = [
 
 export function StatusBar() {
   return (
-    <div className="mx-4 mt-1 flex h-1/4 flex-col justify-center rounded-2xl border-b border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
-      {/* meta row */}
-      <div className="flex items-center gap-4 px-6 py-3 text-sm">
+    <div className="mx-4 mt-1 flex flex-col rounded-2xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
+      {/* meta row — scrollable on mobile */}
+      <div className="scrollbar-none flex items-center gap-4 overflow-x-auto px-6 py-3 text-sm">
         {meta.map((item, i) => (
-          <div key={item.label} className="flex items-center gap-10">
-            <span className="text-neutral-500">
+          <div key={item.label} className="flex shrink-0 items-center gap-4">
+            <span className="whitespace-nowrap text-neutral-500">
               {item.label}:{" "}
               <span className="font-bold text-neutral-900 dark:text-neutral-100">
                 {item.value}
@@ -66,22 +66,24 @@ export function StatusBar() {
             )}
           </div>
         ))}
-        <div className="text-teal ml-auto flex items-center gap-1.5">
+        <div className="text-teal ml-auto flex shrink-0 items-center gap-1.5">
           <RefreshCw className="h-3.5 w-3.5" />
-          <span className="text-xs">10 mins ago</span>
+          <span className="text-xs whitespace-nowrap">10 mins ago</span>
         </div>
       </div>
 
-      {/* severity row */}
-      <div className="grid grid-cols-4 px-6 py-4 dark:divide-neutral-800">
+      {/* severity row — 2 cols on mobile, 4 on md+ */}
+      <div className="grid grid-cols-2 divide-x divide-y divide-neutral-200 border-t border-neutral-200 md:grid-cols-4 md:divide-y-0 dark:divide-neutral-800 dark:border-neutral-800">
         {severities.map((s) => (
-          <div key={s.label} className="flex flex-col gap-2 px-6 first:pl-0">
+          <div key={s.label} className="flex flex-col gap-2 p-4 md:px-6">
             <div className="flex items-center gap-2">
-              <span className="text-sm text-neutral-500">{s.label}</span>
+              <span className="text-xs text-neutral-500 md:text-sm">
+                {s.label}
+              </span>
               <div className={`rounded-md p-1 ${s.iconBg}`}>{s.icon}</div>
             </div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+            <div className="flex flex-wrap items-baseline gap-2">
+              <span className="text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100">
                 {s.count}
               </span>
               <span className={`text-xs ${s.color}`}>

@@ -1,6 +1,12 @@
 import { Search, SlidersHorizontal, Columns2, Plus } from "lucide-react";
 
-export function TableToolbar({ table }) {
+import { Table } from "@tanstack/react-table";
+
+interface TableToolbarProps<TData> {
+  table: Table<TData>;
+}
+
+export function TableToolbar<TData>({ table }: TableToolbarProps<TData>) {
   return (
     <div className="flex items-center gap-2 p-4">
       {/* search */}
